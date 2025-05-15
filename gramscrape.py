@@ -97,6 +97,8 @@ if os.path.exists("old_image_hashes.json"):
     # gets the hashes that differ between files with a one liner
     new_posts = [hash_value for hash_value in new_hashes if hash_value["hash"] not in [old_hash["hash"] for old_hash in old_hashes]]
 else:
+    with open("old_image_hashes.json", "w", encoding="utf-8") as file:
+        json.dump(new_hashes, file, indent=4)
     new_posts = new_hashes
 
 # parse the new posts into a html file for presentation
